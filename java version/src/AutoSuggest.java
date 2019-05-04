@@ -120,9 +120,7 @@ public class AutoSuggest {
 			s.nextLine();
 			switch(choice) {
 				case 1: {
-					System.out.println("Enter input filename: ");
-					String inputFileName=s.nextLine();
-					readAndCreateDictionary(inputFileName);
+					readAndCreateDictionary("input.txt");
 					break;
 				}
 				case 2: {
