@@ -1,5 +1,3 @@
-package javaAll;
-
 import java.util.Scanner;
 
 public class AutoSuggest {
