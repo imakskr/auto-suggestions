@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class AutoSuggest {
@@ -87,19 +89,40 @@ public class AutoSuggest {
 			}
 		}
 	}
+
+	public static void readAndCreateDictionary(String fileName){
+		BufferedReader reader=null;
+		try{
+			reader=new BufferedReader(new FileReader(System.getProperty("user.dir")+"/"+fileName));
+			String line;
+			while((line=reader.readLine()) !=null ){
+				insertWord(line);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(reader!=null){
+					reader.close();
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public static void main(String a[]) {
 		Scanner s=new Scanner(System.in);
 		int choice;
 		do {
-			System.out.println("1. Insert\n2. Display\n3.Exit\nEnter your choice: ");
+			System.out.println("1. Create word database\n2. Display database\n3.Exit\nEnter your choice: ");
 			choice=s.nextInt();
 			s.nextLine();
 			switch(choice) {
 				case 1: {
-					System.out.println("Enter a word: ");
-					String word=s.nextLine();
-					insertWord(word);
+					System.out.println("Enter input filename: ");
+					String inputFileName=s.nextLine();
+					readAndCreateDictionary(inputFileName);
 					break;
 				}
 				case 2: {
